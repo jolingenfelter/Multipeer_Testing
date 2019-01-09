@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		176F5F9B21E6B14A007F3AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */; };
-		176F5F9D21E6B14A007F3AFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5F9C21E6B14A007F3AFF /* ViewController.swift */; };
+		176F5F9D21E6B14A007F3AFF /* BeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */; };
 		176F5FA021E6B14A007F3AFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176F5F9E21E6B14A007F3AFF /* Main.storyboard */; };
 		176F5FA221E6B14B007F3AFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F5FA121E6B14B007F3AFF /* Assets.xcassets */; };
 		176F5FA521E6B14B007F3AFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176F5FA321E6B14B007F3AFF /* LaunchScreen.storyboard */; };
 		176F5FB021E6B14B007F3AFF /* Combined_Beacon_And_FinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FAF21E6B14B007F3AFF /* Combined_Beacon_And_FinderTests.swift */; };
 		176F5FBB21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FBA21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift */; };
+		176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FC821E6B181007F3AFF /* FinderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		176F5F9721E6B14A007F3AFF /* Combined_Beacon_And_Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Combined_Beacon_And_Finder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		176F5F9C21E6B14A007F3AFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconViewController.swift; sourceTree = "<group>"; };
 		176F5F9F21E6B14A007F3AFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		176F5FA121E6B14B007F3AFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176F5FA421E6B14B007F3AFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		176F5FB621E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Combined_Beacon_And_FinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		176F5FBA21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combined_Beacon_And_FinderUITests.swift; sourceTree = "<group>"; };
 		176F5FBC21E6B14B007F3AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		176F5FC821E6B181007F3AFF /* FinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */,
-				176F5F9C21E6B14A007F3AFF /* ViewController.swift */,
+				176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */,
+				176F5FC821E6B181007F3AFF /* FinderViewController.swift */,
 				176F5F9E21E6B14A007F3AFF /* Main.storyboard */,
 				176F5FA121E6B14B007F3AFF /* Assets.xcassets */,
 				176F5FA321E6B14B007F3AFF /* LaunchScreen.storyboard */,
@@ -256,7 +259,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				176F5F9D21E6B14A007F3AFF /* ViewController.swift in Sources */,
+				176F5F9D21E6B14A007F3AFF /* BeaconViewController.swift in Sources */,
+				176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */,
 				176F5F9B21E6B14A007F3AFF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 24F93FXX74;
 				INFOPLIST_FILE = Combined_Beacon_And_Finder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 24F93FXX74;
 				INFOPLIST_FILE = Combined_Beacon_And_Finder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
