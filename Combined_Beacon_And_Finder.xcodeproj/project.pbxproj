@@ -15,6 +15,7 @@
 		176F5FB021E6B14B007F3AFF /* Combined_Beacon_And_FinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FAF21E6B14B007F3AFF /* Combined_Beacon_And_FinderTests.swift */; };
 		176F5FBB21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FBA21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift */; };
 		176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FC821E6B181007F3AFF /* FinderViewController.swift */; };
+		176F5FCB21E6B2B0007F3AFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		176F5FBA21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combined_Beacon_And_FinderUITests.swift; sourceTree = "<group>"; };
 		176F5FBC21E6B14B007F3AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		176F5FC821E6B181007F3AFF /* FinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderViewController.swift; sourceTree = "<group>"; };
+		176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */,
 				176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */,
 				176F5FC821E6B181007F3AFF /* FinderViewController.swift */,
+				176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */,
 				176F5F9E21E6B14A007F3AFF /* Main.storyboard */,
 				176F5FA121E6B14B007F3AFF /* Assets.xcassets */,
 				176F5FA321E6B14B007F3AFF /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 				176F5F9D21E6B14A007F3AFF /* BeaconViewController.swift in Sources */,
 				176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */,
 				176F5F9B21E6B14A007F3AFF /* AppDelegate.swift in Sources */,
+				176F5FCB21E6B2B0007F3AFF /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
