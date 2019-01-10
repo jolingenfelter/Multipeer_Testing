@@ -54,14 +54,6 @@ class BeaconViewController: UIViewController {
         peripheralData = beaconRegion1.peripheralData(withMeasuredPower: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if peripheralManager.state == .poweredOn {
-            peripheralManager.startAdvertising(((peripheralData) as! [String : Any]))
-        }
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
