@@ -1,0 +1,4 @@
+Use this UUID for beacon registration:
+6DD495B6-DC69-402D-B6DD-4255F4717276
+
+- Note beacons should all have the same UUID, edit major and minor to differentiate
