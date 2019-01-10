@@ -10,6 +10,9 @@ import UIKit
 
 class FinderViewController: UIViewController {
 
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var numberOfBeaconsLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

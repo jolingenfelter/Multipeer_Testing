@@ -7,11 +7,111 @@
 //
 
 import UIKit
+import CoreBluetooth
+import CoreLocation
 
 class BeaconViewController: UIViewController {
 
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    lazy var beaconRegion1: CLBeaconRegion = {
+        let proximityUUID = AppConstants.beaconUUID
+        let major: CLBeaconMajorValue = 100
+        let minor: CLBeaconMinorValue = 1
+        let beaconID = "com.example.beacon"
+        
+        return CLBeaconRegion(proximityUUID: proximityUUID,
+                              major: major, minor: minor, identifier: beaconID)
+    }()
+    
+    lazy var beaconRegion2: CLBeaconRegion = {
+        let proximityUUID = AppConstants.beaconUUID
+        let major: CLBeaconMajorValue = 100
+        let minor: CLBeaconMinorValue = 2
+        let beaconID = "com.example.beacon"
+        
+        return CLBeaconRegion(proximityUUID: proximityUUID,
+                              major: major, minor: minor, identifier: beaconID)
+    }()
+    
+    lazy var beaconRegion3: CLBeaconRegion = {
+        let proximityUUID = AppConstants.beaconUUID
+        let major: CLBeaconMajorValue = 100
+        let minor: CLBeaconMinorValue = 3
+        let beaconID = "com.example.beacon"
+        
+        return CLBeaconRegion(proximityUUID: proximityUUID,
+                              major: major, minor: minor, identifier: beaconID)
+    }()
+    
+    var peripheralManager: CBPeripheralManager!
+    var peripheralData: NSMutableDictionary!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        peripheralData = beaconRegion1.peripheralData(withMeasuredPower: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if peripheralManager.state == .poweredOn {
+            peripheralManager.startAdvertising(((peripheralData) as! [String : Any]))
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        peripheralManager.stopAdvertising()
+    }
+    
+    @IBAction func segmentedControlValueChange(_ sender: Any) {
+        guard let segmentedControl = sender as? UISegmentedControl else { return }
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            changeBeaconRegion(beaconRegion1, backgroundColor: .yellow)
+        case 1:
+            changeBeaconRegion(beaconRegion2, backgroundColor: .orange)
+        case 2:
+            changeBeaconRegion(beaconRegion3, backgroundColor: .purple)
+        default:
+            return
+        }
+    }
+}
+
+private extension BeaconViewController {
+    func changeBeaconRegion(_ beaconRegion: CLBeaconRegion, backgroundColor: UIColor) {
+        peripheralManager?.stopAdvertising()
+        
+        peripheralData = beaconRegion.peripheralData(withMeasuredPower: nil)
+        
+        peripheralManager?.startAdvertising(((peripheralData) as! [String : Any]))
+        
+        UIView.animate(withDuration: 0.35) {
+            self.view.backgroundColor = backgroundColor
+        }
+    }
+}
+
+// MARK: - CBPeripheralManagerDelegate
+extension BeaconViewController: CBPeripheralManagerDelegate {
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        if peripheral.state == .poweredOn {
+            peripheral.startAdvertising(((peripheralData) as! [String : Any]))
+        }
+    }
+    
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        if let error = error {
+            statusLabel.text = "Error starting advertisment: \(error)"
+        } else {
+            statusLabel.text = "Advertising has commenced!"
+        }
     }
 }
 

@@ -69,19 +69,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xJ-Dz-7J0">
-                                <rect key="frame" x="159" y="323" width="57.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="146.5" y="318.5" width="82" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C0u-ZY-8hc">
+                                <rect key="frame" x="27" y="459" width="321" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="321" id="jhT-Ep-tO1"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChange:" destination="b7m-CM-F8L" eventType="valueChanged" id="Fw0-oa-X4f"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3xJ-Dz-7J0" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="8W2-t1-wT5"/>
+                            <constraint firstItem="S8R-bL-2Zh" firstAttribute="bottom" secondItem="C0u-ZY-8hc" secondAttribute="bottom" constant="180" id="BSP-uS-GmA"/>
+                            <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="QoT-lz-eVg"/>
+                            <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="hSp-8B-XtB"/>
                             <constraint firstItem="3xJ-Dz-7J0" firstAttribute="centerY" secondItem="Gns-AH-5sn" secondAttribute="centerY" id="ldT-LB-55D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S8R-bL-2Zh"/>
                     </view>
+                    <connections>
+                        <outlet property="statusLabel" destination="3xJ-Dz-7J0" id="v6w-Vi-4R7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGl-d5-GQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,8 +115,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FInder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fee-Bz-uJk">
-                                <rect key="frame" x="163.5" y="323" width="48.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fee-Bz-uJk">
+                                <rect key="frame" x="153.5" y="318.5" width="68" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Beacons Detected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsK-2m-fjg">
+                                <rect key="frame" x="99.5" y="368.5" width="176" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -105,10 +131,16 @@
                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Fee-Bz-uJk" firstAttribute="centerY" secondItem="lqc-2t-Cnk" secondAttribute="centerY" id="RjM-uS-clC"/>
+                            <constraint firstItem="gsK-2m-fjg" firstAttribute="top" secondItem="Fee-Bz-uJk" secondAttribute="bottom" constant="20" id="b4N-69-Xmj"/>
+                            <constraint firstItem="gsK-2m-fjg" firstAttribute="centerX" secondItem="lqc-2t-Cnk" secondAttribute="centerX" id="bDM-px-oAw"/>
                             <constraint firstItem="Fee-Bz-uJk" firstAttribute="centerX" secondItem="lqc-2t-Cnk" secondAttribute="centerX" id="gNi-CX-2dk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hxh-Gn-byZ"/>
                     </view>
+                    <connections>
+                        <outlet property="numberOfBeaconsLabel" destination="gsK-2m-fjg" id="YtF-VK-h3g"/>
+                        <outlet property="statusLabel" destination="Fee-Bz-uJk" id="gQO-vz-gqE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRu-1R-dBW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

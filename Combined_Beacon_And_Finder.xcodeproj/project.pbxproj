@@ -16,6 +16,8 @@
 		176F5FBB21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FBA21E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests.swift */; };
 		176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FC821E6B181007F3AFF /* FinderViewController.swift */; };
 		176F5FCB21E6B2B0007F3AFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */; };
+		17A5BF7421E7A6D900A35699 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5BF7321E7A6D900A35699 /* AppConstants.swift */; };
+		17A5BF7721E7A73700A35699 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A5BF7621E7A73700A35699 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		176F5FBC21E6B14B007F3AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		176F5FC821E6B181007F3AFF /* FinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderViewController.swift; sourceTree = "<group>"; };
 		176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		17A5BF7321E7A6D900A35699 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		17A5BF7621E7A73700A35699 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17A5BF7721E7A73700A35699 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,7 @@
 				176F5FAE21E6B14B007F3AFF /* Combined_Beacon_And_FinderTests */,
 				176F5FB921E6B14B007F3AFF /* Combined_Beacon_And_FinderUITests */,
 				176F5F9821E6B14A007F3AFF /* Products */,
+				17A5BF7521E7A73700A35699 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +107,7 @@
 		176F5F9921E6B14A007F3AFF /* Combined_Beacon_And_Finder */ = {
 			isa = PBXGroup;
 			children = (
+				17A5BF7321E7A6D900A35699 /* AppConstants.swift */,
 				176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */,
 				176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */,
 				176F5FC821E6B181007F3AFF /* FinderViewController.swift */,
@@ -129,6 +136,14 @@
 				176F5FBC21E6B14B007F3AFF /* Info.plist */,
 			);
 			path = Combined_Beacon_And_FinderUITests;
+			sourceTree = "<group>";
+		};
+		17A5BF7521E7A73700A35699 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17A5BF7621E7A73700A35699 /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +281,7 @@
 				176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */,
 				176F5F9B21E6B14A007F3AFF /* AppDelegate.swift in Sources */,
 				176F5FCB21E6B2B0007F3AFF /* HomeViewController.swift in Sources */,
+				17A5BF7421E7A6D900A35699 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
