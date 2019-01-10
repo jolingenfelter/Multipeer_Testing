@@ -41,5 +41,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Need your location for testing</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need your location for testing</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Need to use bluetooth for testing</string>
 </dict>
 </plist>

@@ -35,7 +35,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ry4-TA-SwD">
                                         <rect key="frame" x="0.0" y="50" width="200" height="40"/>
-                                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="XWa-RY-0Lo"/>
                                         </constraints>
@@ -128,7 +128,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Fee-Bz-uJk" firstAttribute="centerY" secondItem="lqc-2t-Cnk" secondAttribute="centerY" id="RjM-uS-clC"/>
                             <constraint firstItem="gsK-2m-fjg" firstAttribute="top" secondItem="Fee-Bz-uJk" secondAttribute="bottom" constant="20" id="b4N-69-Xmj"/>
