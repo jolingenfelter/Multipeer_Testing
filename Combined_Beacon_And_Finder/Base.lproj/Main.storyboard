@@ -26,7 +26,7 @@
                                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="6XD-Px-ZZe"/>
-                                            <constraint firstAttribute="width" constant="200" id="7kr-rq-eaD"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="7kr-rq-eaD"/>
                                         </constraints>
                                         <state key="normal" title="Beacon"/>
                                         <connections>
@@ -77,7 +77,7 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C0u-ZY-8hc">
                                 <rect key="frame" x="27" y="459" width="321" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="321" id="jhT-Ep-tO1"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="321" id="jhT-Ep-tO1"/>
                                 </constraints>
                                 <segments>
                                     <segment title="1"/>
@@ -91,7 +91,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3xJ-Dz-7J0" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="8W2-t1-wT5"/>
                             <constraint firstItem="S8R-bL-2Zh" firstAttribute="bottom" secondItem="C0u-ZY-8hc" secondAttribute="bottom" constant="180" id="BSP-uS-GmA"/>
                             <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="QoT-lz-eVg"/>
                             <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="hSp-8B-XtB"/>
