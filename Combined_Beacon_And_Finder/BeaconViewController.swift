@@ -9,12 +9,13 @@
 import UIKit
 import CoreBluetooth
 import CoreLocation
+import MultipeerConnectivity
 
 class BeaconViewController: UIViewController {
 
     @IBOutlet weak var statusLabel: UILabel!
     
-    lazy var beaconRegion1: CLBeaconRegion = {
+    private lazy var beaconRegion1: CLBeaconRegion = {
         let proximityUUID = AppConstants.beaconUUID
         let major: CLBeaconMajorValue = 100
         let minor: CLBeaconMinorValue = 1
@@ -24,7 +25,7 @@ class BeaconViewController: UIViewController {
                               major: major, minor: minor, identifier: beaconID)
     }()
     
-    lazy var beaconRegion2: CLBeaconRegion = {
+    private lazy var beaconRegion2: CLBeaconRegion = {
         let proximityUUID = AppConstants.beaconUUID
         let major: CLBeaconMajorValue = 100
         let minor: CLBeaconMinorValue = 2
@@ -34,7 +35,7 @@ class BeaconViewController: UIViewController {
                               major: major, minor: minor, identifier: beaconID)
     }()
     
-    lazy var beaconRegion3: CLBeaconRegion = {
+    private lazy var beaconRegion3: CLBeaconRegion = {
         let proximityUUID = AppConstants.beaconUUID
         let major: CLBeaconMajorValue = 100
         let minor: CLBeaconMinorValue = 3
@@ -44,14 +45,23 @@ class BeaconViewController: UIViewController {
                               major: major, minor: minor, identifier: beaconID)
     }()
     
-    var peripheralManager: CBPeripheralManager!
-    var peripheralData: NSMutableDictionary!
+    private lazy var mpcManager: MPCManager = {
+        let manager = MPCManager()
+        manager.delegate = self
+        
+        return manager
+    }()
+    
+    private var peripheralManager: CBPeripheralManager!
+    private var peripheralData: NSMutableDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         peripheralData = beaconRegion1.peripheralData(withMeasuredPower: nil)
+        
+        mpcManager.startBrowsing()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -100,10 +110,21 @@ extension BeaconViewController: CBPeripheralManagerDelegate {
     
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
         if let error = error {
-            statusLabel.text = "Error starting advertisment: \(error)"
+            statusLabel.text = "Error starting peripheral advertisment: \(error)"
         } else {
-            statusLabel.text = "Advertising has commenced!"
+            statusLabel.text = "Peripheral Advertising has commenced!"
         }
+    }
+}
+
+// MARK: MPCManagerDelegate
+extension BeaconViewController: MPCManagerConnectionHandlingDelegate {
+    func manager(_ manager: MPCManager, didFind device: Device, with browser: MCNearbyServiceBrowser) {
+        device.invite(with: browser)
+    }
+    
+    func manager(_ manager: MPCManager, didReceiveInvitiationFrom device: Device) {
+        // invitation is going to come from the finder
     }
 }
 

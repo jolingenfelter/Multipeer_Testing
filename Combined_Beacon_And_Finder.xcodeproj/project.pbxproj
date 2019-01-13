@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1740433021E7DB4E00B019AB /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740432F21E7DB4E00B019AB /* UIViewController+Alert.swift */; };
+		1740433421E7EB5500B019AB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433321E7EB5500B019AB /* Device.swift */; };
+		1740433621E7EB5E00B019AB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433521E7EB5E00B019AB /* Message.swift */; };
+		1740433821E7EB6800B019AB /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433721E7EB6800B019AB /* MPCManager.swift */; };
+		1740433A21E7EF8F00B019AB /* Array+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433921E7EF8F00B019AB /* Array+Utilities.swift */; };
 		176F5F9B21E6B14A007F3AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */; };
 		176F5F9D21E6B14A007F3AFF /* BeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */; };
 		176F5FA021E6B14A007F3AFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 176F5F9E21E6B14A007F3AFF /* Main.storyboard */; };
@@ -38,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1740432F21E7DB4E00B019AB /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		1740433321E7EB5500B019AB /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		1740433521E7EB5E00B019AB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		1740433721E7EB6800B019AB /* MPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
+		1740433921E7EF8F00B019AB /* Array+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utilities.swift"; sourceTree = "<group>"; };
 		176F5F9721E6B14A007F3AFF /* Combined_Beacon_And_Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Combined_Beacon_And_Finder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconViewController.swift; sourceTree = "<group>"; };
@@ -109,10 +119,15 @@
 			children = (
 				17A5BF7321E7A6D900A35699 /* AppConstants.swift */,
 				176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */,
+				1740433921E7EF8F00B019AB /* Array+Utilities.swift */,
 				176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */,
+				1740433321E7EB5500B019AB /* Device.swift */,
 				176F5FC821E6B181007F3AFF /* FinderViewController.swift */,
 				176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */,
 				176F5F9E21E6B14A007F3AFF /* Main.storyboard */,
+				1740433521E7EB5E00B019AB /* Message.swift */,
+				1740433721E7EB6800B019AB /* MPCManager.swift */,
+				1740432F21E7DB4E00B019AB /* UIViewController+Alert.swift */,
 				176F5FA121E6B14B007F3AFF /* Assets.xcassets */,
 				176F5FA321E6B14B007F3AFF /* LaunchScreen.storyboard */,
 				176F5FA621E6B14B007F3AFF /* Info.plist */,
@@ -277,10 +292,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1740433A21E7EF8F00B019AB /* Array+Utilities.swift in Sources */,
 				176F5F9D21E6B14A007F3AFF /* BeaconViewController.swift in Sources */,
 				176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */,
+				1740433821E7EB6800B019AB /* MPCManager.swift in Sources */,
 				176F5F9B21E6B14A007F3AFF /* AppDelegate.swift in Sources */,
+				1740433021E7DB4E00B019AB /* UIViewController+Alert.swift in Sources */,
 				176F5FCB21E6B2B0007F3AFF /* HomeViewController.swift in Sources */,
+				1740433621E7EB5E00B019AB /* Message.swift in Sources */,
+				1740433421E7EB5500B019AB /* Device.swift in Sources */,
 				17A5BF7421E7A6D900A35699 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,7 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24F93FXX74;
-				INFOPLIST_FILE = Combined_Beacon_And_Finder/Info.plist;
+				INFOPLIST_FILE = /Users/jolingenfelter/Documents/Research/Combined_Beacon_And_Finder/Combined_Beacon_And_Finder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -477,7 +497,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24F93FXX74;
-				INFOPLIST_FILE = Combined_Beacon_And_Finder/Info.plist;
+				INFOPLIST_FILE = /Users/jolingenfelter/Documents/Research/Combined_Beacon_And_Finder/Combined_Beacon_And_Finder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

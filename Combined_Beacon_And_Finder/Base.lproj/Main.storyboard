@@ -68,8 +68,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xJ-Dz-7J0">
-                                <rect key="frame" x="146.5" y="318.5" width="82" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xJ-Dz-7J0">
+                                <rect key="frame" x="20" y="318.5" width="335" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -96,6 +96,8 @@
                             <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="QoT-lz-eVg"/>
                             <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="hSp-8B-XtB"/>
                             <constraint firstItem="3xJ-Dz-7J0" firstAttribute="centerY" secondItem="Gns-AH-5sn" secondAttribute="centerY" id="ldT-LB-55D"/>
+                            <constraint firstItem="S8R-bL-2Zh" firstAttribute="trailing" secondItem="3xJ-Dz-7J0" secondAttribute="trailing" constant="20" id="tEX-Lh-r1Q"/>
+                            <constraint firstItem="3xJ-Dz-7J0" firstAttribute="leading" secondItem="S8R-bL-2Zh" secondAttribute="leading" constant="20" id="zLs-vS-O7k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S8R-bL-2Zh"/>
                     </view>
