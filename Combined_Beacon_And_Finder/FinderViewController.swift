@@ -19,13 +19,6 @@ class FinderViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var numberOfBeaconsLabel: UILabel!
     
-    private lazy var mpcManager: MPCManager = {
-        let manager = MPCManager()
-        manager.delegate = self
-        
-        return manager
-    }()
-    
     let locationManager = CLLocationManager()
     let beaconRegion = CLBeaconRegion(proximityUUID: AppConstants.beaconUUID, major: Constants.major, identifier: Constants.regionID)
     
@@ -99,9 +92,9 @@ extension FinderViewController: CLLocationManagerDelegate {
             numberOfBeaconsLabel.text = "Detecting \(beacons.count) beacons"
             
             if closestBeacon.rssi >= -50 {
-                mpcManager.startAdvertising()
+                MPCManager.shared.startAdvertising()
             } else {
-                mpcManager.stop()
+                MPCManager.shared.stopAdvertising()
             }
             
             UIView.animate(withDuration: 0.35) {
@@ -114,17 +107,5 @@ extension FinderViewController: CLLocationManagerDelegate {
                 self.numberOfBeaconsLabel.text = "Detecting 0 beacons"
             }
         }
-    }
-}
-
-// MARK: - MPCManagerConnectionHandlingDelegate
-extension FinderViewController: MPCManagerConnectionHandlingDelegate {
-    func manager(_ manager: MPCManager, didFind device: Device, with browser: MCNearbyServiceBrowser) {
-    }
-    
-    func manager(_ manager: MPCManager, didReceiveInvitiationFrom device: Device) {
-        display(alert: "Invitation Received", message: "Would you like to connect to \(device.peerID.displayName)", okHandler: { _ in
-            device.connect(manager: manager)
-        }, okIsDestructive: false, canCancel: true, cancelHandler: nil)
     }
 }

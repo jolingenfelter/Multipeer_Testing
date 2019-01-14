@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1740433021E7DB4E00B019AB /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740432F21E7DB4E00B019AB /* UIViewController+Alert.swift */; };
-		1740433421E7EB5500B019AB /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433321E7EB5500B019AB /* Device.swift */; };
 		1740433621E7EB5E00B019AB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433521E7EB5E00B019AB /* Message.swift */; };
 		1740433821E7EB6800B019AB /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433721E7EB6800B019AB /* MPCManager.swift */; };
 		1740433A21E7EF8F00B019AB /* Array+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433921E7EF8F00B019AB /* Array+Utilities.swift */; };
@@ -44,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		1740432F21E7DB4E00B019AB /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
-		1740433321E7EB5500B019AB /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		1740433521E7EB5E00B019AB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1740433721E7EB6800B019AB /* MPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
 		1740433921E7EF8F00B019AB /* Array+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utilities.swift"; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */,
 				1740433921E7EF8F00B019AB /* Array+Utilities.swift */,
 				176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */,
-				1740433321E7EB5500B019AB /* Device.swift */,
 				176F5FC821E6B181007F3AFF /* FinderViewController.swift */,
 				176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */,
 				176F5F9E21E6B14A007F3AFF /* Main.storyboard */,
@@ -300,7 +297,6 @@
 				1740433021E7DB4E00B019AB /* UIViewController+Alert.swift in Sources */,
 				176F5FCB21E6B2B0007F3AFF /* HomeViewController.swift in Sources */,
 				1740433621E7EB5E00B019AB /* Message.swift in Sources */,
-				1740433421E7EB5500B019AB /* Device.swift in Sources */,
 				17A5BF7421E7A6D900A35699 /* AppConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

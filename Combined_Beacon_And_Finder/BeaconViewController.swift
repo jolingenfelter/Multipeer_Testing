@@ -45,13 +45,6 @@ class BeaconViewController: UIViewController {
                               major: major, minor: minor, identifier: beaconID)
     }()
     
-    private lazy var mpcManager: MPCManager = {
-        let manager = MPCManager()
-        manager.delegate = self
-        
-        return manager
-    }()
-    
     private var peripheralManager: CBPeripheralManager!
     private var peripheralData: NSMutableDictionary!
     
@@ -61,7 +54,7 @@ class BeaconViewController: UIViewController {
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         peripheralData = beaconRegion1.peripheralData(withMeasuredPower: nil)
         
-        mpcManager.startBrowsing()
+        MPCManager.shared.startBrowsing()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,15 +109,3 @@ extension BeaconViewController: CBPeripheralManagerDelegate {
         }
     }
 }
-
-// MARK: MPCManagerDelegate
-extension BeaconViewController: MPCManagerConnectionHandlingDelegate {
-    func manager(_ manager: MPCManager, didFind device: Device, with browser: MCNearbyServiceBrowser) {
-        device.invite(with: browser)
-    }
-    
-    func manager(_ manager: MPCManager, didReceiveInvitiationFrom device: Device) {
-        // invitation is going to come from the finder
-    }
-}
-
