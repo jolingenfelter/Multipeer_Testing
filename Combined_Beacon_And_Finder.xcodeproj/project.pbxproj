@@ -12,6 +12,7 @@
 		170F6F2321ED11D400BB2A83 /* TicketView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 170F6F2221ED11D400BB2A83 /* TicketView.xib */; };
 		170F6F2521ED11EC00BB2A83 /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F6F2421ED11EC00BB2A83 /* TicketView.swift */; };
 		170F6F2821ED147500BB2A83 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F6F2721ED147400BB2A83 /* UIView+Nib.swift */; };
+		170F6F2A21ED372B00BB2A83 /* ConnectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170F6F2921ED372B00BB2A83 /* ConnectionResponse.swift */; };
 		1740433021E7DB4E00B019AB /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740432F21E7DB4E00B019AB /* UIViewController+Alert.swift */; };
 		1740433621E7EB5E00B019AB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433521E7EB5E00B019AB /* Message.swift */; };
 		1740433821E7EB6800B019AB /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1740433721E7EB6800B019AB /* MPCManager.swift */; };
@@ -53,6 +54,7 @@
 		170F6F2221ED11D400BB2A83 /* TicketView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketView.xib; sourceTree = "<group>"; };
 		170F6F2421ED11EC00BB2A83 /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		170F6F2721ED147400BB2A83 /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		170F6F2921ED372B00BB2A83 /* ConnectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionResponse.swift; sourceTree = "<group>"; };
 		1740432F21E7DB4E00B019AB /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		1740433521E7EB5E00B019AB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1740433721E7EB6800B019AB /* MPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				176F5F9A21E6B14A007F3AFF /* AppDelegate.swift */,
 				1740433921E7EF8F00B019AB /* Array+Utilities.swift */,
 				176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */,
+				170F6F2921ED372B00BB2A83 /* ConnectionResponse.swift */,
 				176F5FC821E6B181007F3AFF /* FinderViewController.swift */,
 				176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */,
 				17B9EFD121ECDF4100802CDD /* LoadingView.swift */,
@@ -320,6 +323,7 @@
 				170F6F2521ED11EC00BB2A83 /* TicketView.swift in Sources */,
 				1740433A21E7EF8F00B019AB /* Array+Utilities.swift in Sources */,
 				170F6F2121ED112D00BB2A83 /* TicketResponse.swift in Sources */,
+				170F6F2A21ED372B00BB2A83 /* ConnectionResponse.swift in Sources */,
 				176F5F9D21E6B14A007F3AFF /* BeaconViewController.swift in Sources */,
 				176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */,
 				170F6F2821ED147500BB2A83 /* UIView+Nib.swift in Sources */,

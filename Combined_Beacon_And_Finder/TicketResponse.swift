@@ -8,7 +8,16 @@
 
 import Foundation
 
-struct TicketResponse {
+struct TicketResponse: Codable {
     let ticket: Ticket
-    let accepted: Bool
+    var accepted: Bool
+    
+    init(ticket: Ticket, accepted: Bool) {
+        self.ticket = ticket
+        self.accepted = accepted
+    }
+    
+    mutating func accept(_ accept: Bool) {
+        accepted = accept
+    }
 }

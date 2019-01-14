@@ -53,6 +53,8 @@ class BeaconViewController: UIViewController {
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         peripheralData = beaconRegion1.peripheralData(withMeasuredPower: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDidReceiveConnectionResponse(_:)), name: Notification.Name(rawValue: NotificationConstants.didReceiveConnectionResponse), object: nil)
+        
         MPCManager.shared.startAdvertising()
     }
     
@@ -82,6 +84,21 @@ private extension BeaconViewController {
         
         UIView.animate(withDuration: 0.35) {
             self.view.backgroundColor = backgroundColor
+        }
+    }
+    
+    @objc
+    func handleDidReceiveConnectionResponse(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let connectionResponse = userInfo[UserInfoKeys.connectionResponse] as? ConnectionResponse,
+            connectionResponse.accepted  == true else {
+                return
+        }
+        
+        let exampleTicket = Ticket(beverageName: "Example Beer", price: "$5.00")
+        
+        MPCManager.shared.sendTicket(exampleTicket) { [weak self] error in
+            self?.display(alert: error)
         }
     }
 }

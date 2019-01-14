@@ -15,6 +15,7 @@ class FinderViewController: UIViewController {
         static let major: CLBeaconMajorValue = 100
         static let regionID = "com.example.beacon"
         static let timeoutInterval: TimeInterval = 10
+        static let ticketAppearAnimationDuration: TimeInterval = 0.35
     }
 
     @IBOutlet weak var statusLabel: UILabel!
@@ -35,6 +36,7 @@ class FinderViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleDidFindPeerNofication(_:)), name: Notification.Name(rawValue: NotificationConstants.didFindPeer), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleStateChangeNotification(_:)), name: Notification.Name(NotificationConstants.sessionDidChangeState), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDidReceiveTicket(_:)), name: Notification.Name(NotificationConstants.didReceiveTicket), object: nil)
     }
 }
 
@@ -77,20 +79,54 @@ private extension FinderViewController {
             browser.invitePeer(peer, to: session, withContext: nil, timeout: Constants.timeoutInterval)
             
             OperationQueue.main.addOperation {
-               LoadingView.show(in: self?.navigationController?.view)
+                LoadingView.show(in: self?.navigationController?.view)
             }
         }, okIsDestructive: false, canCancel: true, cancelHandler: nil)
     }
     
     @objc
     func handleStateChangeNotification(_ notification: Notification) {
-        guard let userInfo = notification.userInfo, let state = userInfo[UserInfoKeys.sessionState] as? MCSessionState else {
+        guard let userInfo = notification.userInfo,
+            let state = userInfo[UserInfoKeys.sessionState] as? MCSessionState else {
                 return
         }
         
         if state == .connected {
             OperationQueue.main.addOperation {
                 LoadingView.hide(for: self.navigationController?.view)
+                
+                MPCManager.shared.sendConnectionResponse(ConnectionResponse(accepted: true), completion: { [weak self] error in
+                    guard let error = error else { return }
+                    
+                    self?.display(alert: error)
+                })
+            }
+        }
+    }
+    
+    @objc
+    func handleDidReceiveTicket(_ notification: Notification) {
+        guard let userInfo = notification.userInfo, let ticket = userInfo[UserInfoKeys.ticket] as? Ticket else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            let ticketView = TicketView()
+            ticketView.beverageName = ticket.beverageName
+            ticketView.cost = ticket.cost
+            ticketView.translatesAutoresizingMaskIntoConstraints = false
+            ticketView.alpha = 0.0
+            
+            self.view.addSubview(ticketView)
+            
+            NSLayoutConstraint.activate([
+                ticketView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200),
+                ticketView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)])
+            
+            let _ = ticketView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive
+            
+            UIView.animate(withDuration: Constants.ticketAppearAnimationDuration) {
+                ticketView.alpha = 1.0
             }
         }
     }
@@ -109,14 +145,6 @@ extension FinderViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        //        if !beacons.isEmpty {
-        //            signalStrengthLabel.text = "\(beacons[0].rssi)"
-        //            updateDistance(beacons[0].proximity)
-        //        } else {
-        //            self.signalStrengthLabel.text = "No beacon detected"
-        //            view.backgroundColor = .red
-        //        }
-        
         if !beacons.isEmpty {
             let sorted = beacons.sorted { $0.rssi > $1.rssi }
             

@@ -13,7 +13,7 @@ typealias AlertActionHandler = ((UIAlertAction) -> ())
 extension UIViewController {
     func display(alert error: Error?) {
         if let error = error {
-            display(alert: "Ok", message: error.localizedDescription)
+            display(alert: "Error", message: "\(error)")
         }
     }
     

@@ -12,7 +12,6 @@ class TicketView: UIView {
     
     @IBOutlet weak var beverageNameLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
-    @IBOutlet var contentView: UIView!
     
     var beverageName: String? {
         didSet {

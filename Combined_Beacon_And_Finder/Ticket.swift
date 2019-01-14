@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Ticket {
+struct Ticket: Codable {
     let beverageName: String
-    let price: String
+    let cost: String
+    
+    init(beverageName: String, price: String) {
+        self.beverageName = beverageName
+        self.cost = price
+    }
 }

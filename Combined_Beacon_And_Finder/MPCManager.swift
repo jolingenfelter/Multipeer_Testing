@@ -13,6 +13,10 @@ enum NotificationConstants {
     static let didFindPeer = "DidFindPeer"
     static let didLosePeer = "DidLosePeer"
     static let sessionDidChangeState = "SessionDidChangeState"
+    static let connectionEstablished = "ConnectionEstablished"
+    static let didReceiveTicket = "DidReceiveTicket"
+    static let didReceiveTicketResponse = "DidReceiveTicketResponse"
+    static let didReceiveConnectionResponse = "DidReceiveConnectionResponse"
 }
 
 enum UserInfoKeys {
@@ -20,6 +24,9 @@ enum UserInfoKeys {
     static let peer = "peer"
     static let session = "session"
     static let sessionState = "sessionState"
+    static let ticket = "ticket"
+    static let ticketResponse = "ticketResponse"
+    static let connectionResponse = "connectionResponse"
 }
 
 class MPCManager: NSObject {
@@ -30,7 +37,7 @@ class MPCManager: NSObject {
     private let localPeerID = MCPeerID(displayName: UIDevice.current.name)
     
     private lazy var session: MCSession = {
-        let session = MCSession(peer: localPeerID, securityIdentity: nil, encryptionPreference: .required)
+        let session = MCSession(peer: localPeerID, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         
         return session
@@ -97,7 +104,20 @@ extension MPCManager: MCSessionDelegate {
         NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.sessionDidChangeState), object: nil, userInfo: userInfo)
     }
     
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {}
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        let decoder = JSONDecoder()
+        
+        if let ticket = try? decoder.decode(Ticket.self, from: data) {
+            let userInfo = [UserInfoKeys.ticket: ticket]
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.didReceiveTicket), object: nil, userInfo: userInfo)
+        } else if let ticketResponse = try? decoder.decode(TicketResponse.self, from: data) {
+            let userInfo = [UserInfoKeys.ticketResponse: ticketResponse]
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.didReceiveTicketResponse), object: nil, userInfo: userInfo)
+        } else if let connectionResponse = try? decoder.decode(ConnectionResponse.self, from: data) {
+            let userInfo = [UserInfoKeys.connectionResponse: connectionResponse]
+            NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.didReceiveConnectionResponse), object: nil, userInfo: userInfo)
+        }
+    }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}
     
@@ -105,6 +125,42 @@ extension MPCManager: MCSessionDelegate {
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
         session.disconnect()
+    }
+}
+
+extension MPCManager {
+    func sendTicket(_ ticket: Ticket, completion: ((Error?) -> Void)?) {
+        guard !session.connectedPeers.isEmpty else { return }
+        
+        do {
+            let encoded = try JSONEncoder().encode(ticket)
+            try session.send(encoded, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            completion?(error)
+        }
+    }
+    
+    func sendTicketResponse(_ response: TicketResponse, completion: ((Error?) -> Void)?) {
+        guard !session.connectedPeers.isEmpty else { return }
+        
+        do {
+            let encoded = try JSONEncoder().encode(response)
+            try session.send(encoded, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            completion?(error)
+        }
+    }
+    
+    func sendConnectionResponse(_ response: ConnectionResponse, completion: ((Error?) -> Void)?) {
+        guard !session.connectedPeers.isEmpty else { return }
+        
+        do {
+            print(session.connectedPeers.map { $0.displayName })
+            let encoded = try JSONEncoder().encode(response)
+            try session.send(encoded, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            completion?(error)
+        }
     }
 }
 
