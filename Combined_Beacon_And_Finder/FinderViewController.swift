@@ -14,6 +14,7 @@ class FinderViewController: UIViewController {
     private enum Constants {
         static let major: CLBeaconMajorValue = 100
         static let regionID = "com.example.beacon"
+        static let timeoutInterval: TimeInterval = 10
     }
 
     @IBOutlet weak var statusLabel: UILabel!
@@ -31,6 +32,9 @@ class FinderViewController: UIViewController {
         view.backgroundColor = .red
         statusLabel.text = "No beacon detected"
         numberOfBeaconsLabel.text = "Detecting 0 beacons"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDidFindPeerNofication(_:)), name: Notification.Name(rawValue: NotificationConstants.didFindPeer), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleStateChangeNotification(_:)), name: Notification.Name(NotificationConstants.sessionDidChangeState), object: nil)
     }
 }
 
@@ -57,6 +61,36 @@ private extension FinderViewController {
                 
             case .immediate:
                 self.view.backgroundColor = UIColor.green
+            }
+        }
+    }
+    
+    @objc
+    func handleDidFindPeerNofication(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let browser = userInfo[UserInfoKeys.browser] as? MCNearbyServiceBrowser,
+            let peer = userInfo[UserInfoKeys.peer] as? MCPeerID,
+            let session = userInfo[UserInfoKeys.session] as? MCSession
+            else { return }
+        
+        display(alert: "Peer found", message: "Would you like to connect to \(peer.displayName)", okHandler: { [weak self] _ in
+            browser.invitePeer(peer, to: session, withContext: nil, timeout: Constants.timeoutInterval)
+            
+            OperationQueue.main.addOperation {
+               LoadingView.show(in: self?.navigationController?.view)
+            }
+        }, okIsDestructive: false, canCancel: true, cancelHandler: nil)
+    }
+    
+    @objc
+    func handleStateChangeNotification(_ notification: Notification) {
+        guard let userInfo = notification.userInfo, let state = userInfo[UserInfoKeys.sessionState] as? MCSessionState else {
+                return
+        }
+        
+        if state == .connected {
+            OperationQueue.main.addOperation {
+                LoadingView.hide(for: self.navigationController?.view)
             }
         }
     }
@@ -92,9 +126,9 @@ extension FinderViewController: CLLocationManagerDelegate {
             numberOfBeaconsLabel.text = "Detecting \(beacons.count) beacons"
             
             if closestBeacon.rssi >= -50 {
-                MPCManager.shared.startAdvertising()
+                MPCManager.shared.startBrowsing()
             } else {
-                MPCManager.shared.stopAdvertising()
+                MPCManager.shared.stopBrowsing()
             }
             
             UIView.animate(withDuration: 0.35) {

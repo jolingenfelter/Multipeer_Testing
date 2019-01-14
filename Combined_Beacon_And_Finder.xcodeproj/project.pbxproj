@@ -22,6 +22,7 @@
 		176F5FCB21E6B2B0007F3AFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */; };
 		17A5BF7421E7A6D900A35699 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5BF7321E7A6D900A35699 /* AppConstants.swift */; };
 		17A5BF7721E7A73700A35699 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A5BF7621E7A73700A35699 /* CoreBluetooth.framework */; };
+		17B9EFD221ECDF4100802CDD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B9EFD121ECDF4100802CDD /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		17A5BF7321E7A6D900A35699 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		17A5BF7621E7A73700A35699 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		17B9EFD121ECDF4100802CDD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				176F5F9C21E6B14A007F3AFF /* BeaconViewController.swift */,
 				176F5FC821E6B181007F3AFF /* FinderViewController.swift */,
 				176F5FCA21E6B2B0007F3AFF /* HomeViewController.swift */,
+				17B9EFD121ECDF4100802CDD /* LoadingView.swift */,
 				176F5F9E21E6B14A007F3AFF /* Main.storyboard */,
 				1740433521E7EB5E00B019AB /* Message.swift */,
 				1740433721E7EB6800B019AB /* MPCManager.swift */,
@@ -292,6 +295,7 @@
 				1740433A21E7EF8F00B019AB /* Array+Utilities.swift in Sources */,
 				176F5F9D21E6B14A007F3AFF /* BeaconViewController.swift in Sources */,
 				176F5FC921E6B181007F3AFF /* FinderViewController.swift in Sources */,
+				17B9EFD221ECDF4100802CDD /* LoadingView.swift in Sources */,
 				1740433821E7EB6800B019AB /* MPCManager.swift in Sources */,
 				176F5F9B21E6B14A007F3AFF /* AppDelegate.swift in Sources */,
 				1740433021E7DB4E00B019AB /* UIViewController+Alert.swift in Sources */,

@@ -12,7 +12,6 @@ import CoreLocation
 import MultipeerConnectivity
 
 class BeaconViewController: UIViewController {
-
     @IBOutlet weak var statusLabel: UILabel!
     
     private lazy var beaconRegion1: CLBeaconRegion = {
@@ -54,13 +53,7 @@ class BeaconViewController: UIViewController {
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         peripheralData = beaconRegion1.peripheralData(withMeasuredPower: nil)
         
-        MPCManager.shared.startBrowsing()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        peripheralManager.stopAdvertising()
+        MPCManager.shared.startAdvertising()
     }
     
     @IBAction func segmentedControlValueChange(_ sender: Any) {

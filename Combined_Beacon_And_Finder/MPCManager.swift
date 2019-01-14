@@ -9,13 +9,22 @@
 import Foundation
 import MultipeerConnectivity
 
+enum NotificationConstants {
+    static let didFindPeer = "DidFindPeer"
+    static let didLosePeer = "DidLosePeer"
+    static let sessionDidChangeState = "SessionDidChangeState"
+}
+
+enum UserInfoKeys {
+    static let browser = "browser"
+    static let peer = "peer"
+    static let session = "session"
+    static let sessionState = "sessionState"
+}
+
 class MPCManager: NSObject {
-    private enum Constants {
-        static let timeoutDuration: TimeInterval = 10
-    }
-    
-	private var advertiser: MCNearbyServiceAdvertiser!
-	private var browser: MCNearbyServiceBrowser!
+	private var advertiser: MCNearbyServiceAdvertiser
+	private var browser: MCNearbyServiceBrowser
     
     private let serviceType = "MPC-Testing"
     private let localPeerID = MCPeerID(displayName: UIDevice.current.name)
@@ -28,6 +37,16 @@ class MPCManager: NSObject {
     }()
     
     static let shared = MPCManager()
+    
+    override init() {
+        advertiser = MCNearbyServiceAdvertiser(peer: localPeerID, discoveryInfo: nil, serviceType: serviceType)
+        browser = MCNearbyServiceBrowser(peer: localPeerID, serviceType: serviceType)
+        
+        super.init()
+        
+        advertiser.delegate = self
+        browser.delegate = self
+    }
 
 	func startAdvertising() {
 		self.advertiser.startAdvertisingPeer()
@@ -39,10 +58,12 @@ class MPCManager: NSObject {
     
     func stopAdvertising() {
         self.advertiser.stopAdvertisingPeer()
+        session.disconnect()
     }
     
     func stopBrowsing() {
         self.browser.stopBrowsingForPeers()
+        session.disconnect()
     }
 }
 
@@ -56,17 +77,24 @@ extension MPCManager: MCNearbyServiceAdvertiserDelegate {
 // MARK: - MCNearbyServiceBrowserDelegate
 extension MPCManager: MCNearbyServiceBrowserDelegate {
 	func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        if session.connectedPeers.isEmpty {
-            browser.invitePeer(peerID, to: session, withContext: nil, timeout: Constants.timeoutDuration)
-        }
+        let userInfo = [UserInfoKeys.browser: browser, UserInfoKeys.peer: peerID, UserInfoKeys.session: session]
+        
+        NotificationCenter.default.post(name: Notification.Name(NotificationConstants.didFindPeer), object: nil, userInfo: userInfo)
 	}
 	
-	func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {}
+	func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        let userInfo = [UserInfoKeys.session: session]
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.didLosePeer), object: nil, userInfo: userInfo)
+    }
 }
 
 // MARK: - MCSessionDelegate
 extension MPCManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        let userInfo = [UserInfoKeys.sessionState: state]
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.sessionDidChangeState), object: nil, userInfo: userInfo)
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {}
