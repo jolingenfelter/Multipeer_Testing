@@ -120,7 +120,7 @@ private extension FinderViewController {
             self.view.addSubview(ticketView)
             
             NSLayoutConstraint.activate([
-                ticketView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200),
+                ticketView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80),
                 ticketView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)])
             
             let _ = ticketView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive

@@ -9,6 +9,10 @@
 import UIKit
 
 class TicketView: UIView {
+    private enum Constants {
+        static let height: CGFloat = 200
+        static let width: CGFloat = 350
+    }
     
     @IBOutlet weak var beverageNameLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
@@ -27,6 +31,10 @@ class TicketView: UIView {
                 costLabel.text = cost
             }
         }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: Constants.width, height: Constants.height)
     }
     
     override init(frame: CGRect) {
