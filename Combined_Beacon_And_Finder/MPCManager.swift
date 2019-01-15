@@ -36,12 +36,18 @@ class MPCManager: NSObject {
     private let serviceType = "MPC-Testing"
     private let localPeerID = MCPeerID(displayName: UIDevice.current.name)
     
+    private var mostRecentPeer: MCPeerID?
+    
     private lazy var session: MCSession = {
         let session = MCSession(peer: localPeerID, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         
         return session
     }()
+    
+    var connectionCount: Int {
+        return session.connectedPeers.count
+    }
     
     static let shared = MPCManager()
     
@@ -84,7 +90,7 @@ extension MPCManager: MCNearbyServiceAdvertiserDelegate {
 // MARK: - MCNearbyServiceBrowserDelegate
 extension MPCManager: MCNearbyServiceBrowserDelegate {
 	func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        if session.connectedPeers.isEmpty {
+        if session.connectedPeers.isEmpty && mostRecentPeer != peerID {
             let userInfo = [UserInfoKeys.browser: browser, UserInfoKeys.peer: peerID, UserInfoKeys.session: session]
             
             NotificationCenter.default.post(name: Notification.Name(NotificationConstants.didFindPeer), object: nil, userInfo: userInfo)
@@ -104,6 +110,10 @@ extension MPCManager: MCSessionDelegate {
         let userInfo = [UserInfoKeys.sessionState: state]
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.sessionDidChangeState), object: nil, userInfo: userInfo)
+        
+        if state == .connected {
+            mostRecentPeer = peerID
+        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
@@ -140,6 +150,8 @@ extension MPCManager {
         } catch {
             completion?(error)
         }
+        
+        completion?(nil)
     }
     
     func sendTicketResponse(_ response: TicketResponse, completion: ((Error?) -> Void)?) {
@@ -151,18 +163,21 @@ extension MPCManager {
         } catch {
             completion?(error)
         }
+        
+        completion?(nil)
     }
     
     func sendConnectionResponse(_ response: ConnectionResponse, completion: ((Error?) -> Void)?) {
         guard !session.connectedPeers.isEmpty else { return }
         
         do {
-            print(session.connectedPeers.map { $0.displayName })
             let encoded = try JSONEncoder().encode(response)
             try session.send(encoded, toPeers: session.connectedPeers, with: .reliable)
         } catch {
             completion?(error)
         }
+        
+        completion?(nil)
     }
 }
 

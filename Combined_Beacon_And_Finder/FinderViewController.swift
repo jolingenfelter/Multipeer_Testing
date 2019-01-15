@@ -21,6 +21,8 @@ class FinderViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var numberOfBeaconsLabel: UILabel!
     
+    private var ticket: Ticket?
+    
     let locationManager = CLLocationManager()
     let beaconRegion = CLBeaconRegion(proximityUUID: AppConstants.beaconUUID, major: Constants.major, identifier: Constants.regionID)
     
@@ -37,6 +39,12 @@ class FinderViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleDidFindPeerNofication(_:)), name: Notification.Name(rawValue: NotificationConstants.didFindPeer), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleStateChangeNotification(_:)), name: Notification.Name(NotificationConstants.sessionDidChangeState), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleDidReceiveTicket(_:)), name: Notification.Name(NotificationConstants.didReceiveTicket), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        MPCManager.shared.stopBrowsing()
     }
 }
 
@@ -91,7 +99,8 @@ private extension FinderViewController {
                 return
         }
         
-        if state == .connected {
+        switch state {
+        case .connected:
             OperationQueue.main.addOperation {
                 LoadingView.hide(for: self.navigationController?.view)
                 
@@ -101,6 +110,13 @@ private extension FinderViewController {
                     self?.display(alert: error)
                 })
             }
+        case .notConnected:
+            OperationQueue.main.addOperation {
+                self.removeTicketView()
+            }
+            
+        case .connecting:
+            break
         }
     }
     
@@ -110,23 +126,54 @@ private extension FinderViewController {
             return
         }
         
+        self.ticket = ticket
+        
         DispatchQueue.main.async {
             let ticketView = TicketView()
             ticketView.beverageName = ticket.beverageName
             ticketView.cost = ticket.cost
             ticketView.translatesAutoresizingMaskIntoConstraints = false
             ticketView.alpha = 0.0
+            ticketView.isUserInteractionEnabled = true
             
             self.view.addSubview(ticketView)
             
             NSLayoutConstraint.activate([
-                ticketView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80),
+                ticketView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 120),
                 ticketView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)])
-            
-            let _ = ticketView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive
             
             UIView.animate(withDuration: Constants.ticketAppearAnimationDuration) {
                 ticketView.alpha = 1.0
+            }
+            
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handleTicketSwipe(_:)))
+            ticketView.addGestureRecognizer(panGesture)
+        }
+    }
+    
+    @objc
+    func handleTicketSwipe(_ gesture: UIGestureRecognizer) {
+        guard let pan = gesture as? UIPanGestureRecognizer, let view = pan.view else { return }
+        
+        if pan.verticalDirection(view) == .up {
+            guard let ticket = ticket else { return }
+            
+            let response = TicketResponse(ticket: ticket, accepted: true)
+            MPCManager.shared.sendTicketResponse(response) { [weak self] error in
+                self?.display(alert: error)
+                self?.removeTicketView()
+                
+                MPCManager.shared.stopBrowsing()
+            }
+        }
+    }
+    
+    func removeTicketView() {
+        for subview in view.subviews {
+            if subview.isKind(of: TicketView.self) {
+                UIView.animate(withDuration: Constants.ticketAppearAnimationDuration) {
+                    subview.removeFromSuperview()
+                }
             }
         }
     }
@@ -157,6 +204,8 @@ extension FinderViewController: CLLocationManagerDelegate {
                 MPCManager.shared.startBrowsing()
             } else {
                 MPCManager.shared.stopBrowsing()
+                
+                removeTicketView()
             }
             
             UIView.animate(withDuration: 0.35) {
@@ -168,6 +217,10 @@ extension FinderViewController: CLLocationManagerDelegate {
                 self.statusLabel.text = "No beacon detected"
                 self.numberOfBeaconsLabel.text = "Detecting 0 beacons"
             }
+            
+            MPCManager.shared.stopBrowsing()
+            
+            removeTicketView()
         }
     }
 }

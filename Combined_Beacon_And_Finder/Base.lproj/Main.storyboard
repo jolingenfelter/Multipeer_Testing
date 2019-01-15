@@ -88,20 +88,39 @@
                                     <action selector="segmentedControlValueChange:" destination="b7m-CM-F8L" eventType="valueChanged" id="Fw0-oa-X4f"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of peers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JS-TC-AvI">
+                                <rect key="frame" x="148.5" y="379" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Huzzah!  A transaction Occured!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQD-P2-BRQ">
+                                <rect key="frame" x="63" y="164" width="249" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="3JS-TC-AvI" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="7zV-5X-Y96"/>
                             <constraint firstItem="S8R-bL-2Zh" firstAttribute="bottom" secondItem="C0u-ZY-8hc" secondAttribute="bottom" constant="180" id="BSP-uS-GmA"/>
                             <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="QoT-lz-eVg"/>
+                            <constraint firstItem="3JS-TC-AvI" firstAttribute="top" secondItem="3xJ-Dz-7J0" secondAttribute="bottom" constant="30.5" id="VNu-b6-4kk"/>
+                            <constraint firstItem="AQD-P2-BRQ" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="WOq-nC-lup"/>
                             <constraint firstItem="C0u-ZY-8hc" firstAttribute="centerX" secondItem="Gns-AH-5sn" secondAttribute="centerX" id="hSp-8B-XtB"/>
                             <constraint firstItem="3xJ-Dz-7J0" firstAttribute="centerY" secondItem="Gns-AH-5sn" secondAttribute="centerY" id="ldT-LB-55D"/>
                             <constraint firstItem="S8R-bL-2Zh" firstAttribute="trailing" secondItem="3xJ-Dz-7J0" secondAttribute="trailing" constant="20" id="tEX-Lh-r1Q"/>
                             <constraint firstItem="3xJ-Dz-7J0" firstAttribute="leading" secondItem="S8R-bL-2Zh" secondAttribute="leading" constant="20" id="zLs-vS-O7k"/>
+                            <constraint firstItem="AQD-P2-BRQ" firstAttribute="top" secondItem="S8R-bL-2Zh" secondAttribute="top" constant="100" id="zlg-6z-Yas"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S8R-bL-2Zh"/>
                     </view>
                     <connections>
+                        <outlet property="connectionCountLabel" destination="3JS-TC-AvI" id="sip-GS-tNM"/>
+                        <outlet property="segmentedControl" destination="C0u-ZY-8hc" id="KSZ-jK-xvb"/>
                         <outlet property="statusLabel" destination="3xJ-Dz-7J0" id="v6w-Vi-4R7"/>
+                        <outlet property="transactionLabel" destination="AQD-P2-BRQ" id="ZkT-IG-Cdb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGl-d5-GQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
