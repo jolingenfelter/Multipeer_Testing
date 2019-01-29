@@ -36,8 +36,6 @@ class MPCManager: NSObject {
     private let serviceType = "MPC-Testing"
     private let localPeerID = MCPeerID(displayName: UIDevice.current.name)
     
-    private var mostRecentPeer: MCPeerID?
-    
     private lazy var session: MCSession = {
         let session = MCSession(peer: localPeerID, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
@@ -90,7 +88,7 @@ extension MPCManager: MCNearbyServiceAdvertiserDelegate {
 // MARK: - MCNearbyServiceBrowserDelegate
 extension MPCManager: MCNearbyServiceBrowserDelegate {
 	func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        if session.connectedPeers.isEmpty && mostRecentPeer != peerID {
+        if session.connectedPeers.isEmpty {
             let userInfo = [UserInfoKeys.browser: browser, UserInfoKeys.peer: peerID, UserInfoKeys.session: session]
             
             NotificationCenter.default.post(name: Notification.Name(NotificationConstants.didFindPeer), object: nil, userInfo: userInfo)
@@ -110,10 +108,6 @@ extension MPCManager: MCSessionDelegate {
         let userInfo = [UserInfoKeys.sessionState: state]
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationConstants.sessionDidChangeState), object: nil, userInfo: userInfo)
-        
-        if state == .connected {
-            mostRecentPeer = peerID
-        }
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
