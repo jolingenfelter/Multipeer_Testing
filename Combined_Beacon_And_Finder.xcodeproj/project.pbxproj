@@ -514,7 +514,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24F93FXX74;
-				INFOPLIST_FILE = /Users/jolingenfelter/Documents/Research/Combined_Beacon_And_Finder/Combined_Beacon_And_Finder/Info.plist;
+				INFOPLIST_FILE = /Users/jolingenfelter/Documents/Random_Research/Combined_Beacon_And_Finder/Combined_Beacon_And_Finder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +533,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24F93FXX74;
-				INFOPLIST_FILE = /Users/jolingenfelter/Documents/Research/Combined_Beacon_And_Finder/Combined_Beacon_And_Finder/Info.plist;
+				INFOPLIST_FILE = /Users/jolingenfelter/Documents/Random_Research/Combined_Beacon_And_Finder/Combined_Beacon_And_Finder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
