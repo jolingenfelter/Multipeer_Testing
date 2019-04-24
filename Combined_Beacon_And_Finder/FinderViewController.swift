@@ -53,7 +53,7 @@ private extension FinderViewController {
         locationManager.startRangingBeacons(in: beaconRegion)
     }
     
-    func stopScanning() {
+    func stopMonitoring() {
         locationManager.stopRangingBeacons(in: beaconRegion)
     }
     
@@ -113,6 +113,12 @@ private extension FinderViewController {
         case .notConnected:
             OperationQueue.main.addOperation {
                 self.removeTicketView()
+            }
+            
+            stopMonitoring()
+            
+            DispatchQueue.global().asyncAfter(deadline: .now() + 60.00) {
+                self.startMonitoring()
             }
             
         case .connecting:
